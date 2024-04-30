@@ -43,7 +43,7 @@ function App() {
 
       return (<div>
         <h1>Browse view</h1>
-        <img src={location.images[0]}></img>
+        <img src={location.images[0].url}></img>
         <p>{location.name}</p>
         <p>{location.description}</p>
       </div>);
