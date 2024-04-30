@@ -2,13 +2,14 @@ import React, {useState, useCallback} from 'react';
 
 function App() {
   const [viewer, setViewer] = useState(0);
+  const [locations, setLocations] = useState([]);
 
   const setView = (view) => {
     setViewer(view)
 
     switch (view) {
       case 0:
-        getAllProducts();
+        getAllLocations();
         break;
 
       case 1:
@@ -21,7 +22,7 @@ function App() {
     }
   }
 
-  function getAllProducts() {
+  function getAllLocations() {
     fetch("http://localhost:8081/read", {
       method: "GET",
       headers: {
@@ -30,17 +31,23 @@ function App() {
     })
       .then(response => response.json())
       .then((data) => {
-      console.log("Show Catalog of Products :");
-      console.log(data);
-      setProducts(data);
+      setLocations(data);
       });
   }
 
   function View1() {
 
-    return (<div>
-      <h1>Browse view</h1>
-    </div>);
+    
+    for (let i = 0; i < locations.length; i++) {
+      const location = locations[i]
+
+      return (<div>
+        <h1>Browse view</h1>
+        <img src={location.images[0]}></img>
+        <p>{location.name}</p>
+        <p>{location.description}</p>
+      </div>);
+    }
   }
   
   function View2() {

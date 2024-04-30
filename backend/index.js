@@ -18,7 +18,9 @@ app.listen(port, () => {
 const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
-
+    images: [],
+    name: String,
+    description: String
 }, { collection: 'locations' });
 
 const Location = mongoose.model('Location', locationSchema);
