@@ -129,6 +129,12 @@ function App() {
     {viewer === 0 && <View1 />}
     {viewer === 1 && <View2 />}
     {viewer === 2 && <View3 />}
+
+    <div class="footer-padding"></div>
+    <footer>
+        <p>Contact:</p>
+        <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+    </footer>
   </div>);
 }
 
