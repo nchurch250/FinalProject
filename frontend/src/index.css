@@ -16,6 +16,10 @@
     margin: 5%
 }
 
+.locationBox img{
+    width: 50%;
+}
+
 #locationBoxes {
     display: flex;
 }
