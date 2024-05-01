@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import nathanPicture from './images/nathan.jpg';
+import daltonPicture from './images/DaltonPicture.jpg';
+
 
 function App() {
   const [viewer, setViewer] = useState(0);
@@ -95,12 +98,25 @@ function App() {
       <h1>Website Authors</h1>
       <button onClick={() => setView(0)}>Browse</button>
       <button onClick={() => setView(2)}>Authors</button>
-      <div className="author">
-        <div>
-          <h3>Nathan Church</h3>
-        </div>
-        <div>
-          <h3>Dalton Clark</h3>
+      <br />
+      <br />
+      <div class="author">
+        <div class="container-wrapper">
+
+          <div class="container">
+              <img src={nathanPicture} alt="Picture of Nathan" />
+              <p>Nathan Church<br />
+              <a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a></p>
+          </div>
+
+          <div class="container">
+            <img src={daltonPicture} alt="Picture of Dalton" />
+            <p>Hello! My name is Dalton Clark and I am a Computer Science major attending Iowa State University. <br />
+              This is our final project for Com S 319 and I have completed Com S 227, 228, 230, and 309.<br />
+            <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+            
+          </div>
+
         </div>
       </div>
     </div>);
@@ -115,6 +131,12 @@ function App() {
     {viewer === 0 && <View1 />}
     {viewer === 1 && <View2 />}
     {viewer === 2 && <View3 />}
+
+    <div class="footer-padding"></div>
+    <footer>
+        <p>Contact:</p>
+        <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+    </footer>
   </div>);
 }
 
