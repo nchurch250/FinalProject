@@ -42,3 +42,11 @@ app.get("/read", async (req, res) => {
 
     res.json(locations)
 });
+
+app.get("/read/:id", async (req, res) => {
+    const id = req.params.id;
+
+    const product = await Location.find({"id": id});
+
+    res.json(product);
+});
