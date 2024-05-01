@@ -79,11 +79,18 @@ function App() {
       <button onClick={() => setView(0)}>Browse</button>
       <button onClick={() => setView(2)}>Authors</button>
       <div class="author">
-        <div>
-          <h3>Nathan Church</h3>
-        </div>
-        <div>
-          <h3>Dalton Clark</h3>
+        <div class="container-wrapper">
+          <div class="container">
+              <img src='/var/www/html/frontend/public/nathan.jpg' alt="Picture of Nathan" style={{borderRadius: 10}} />
+              <p>Nathan Church<br />
+              <a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a></p>
+          </div>
+
+          <div class="container">
+            <img src="./images/DaltonPicture.jpg" alt="Picture of Dalton" style={{borderRadius: 10}} />
+            <p>Dalton Clark<br />
+            <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+          </div>
         </div>
       </div>
     </div>);
