@@ -65,7 +65,7 @@ function App() {
 
       locationBoxes.push(
         <div key={location._id} className="locationBox">
-          <img src={location.images}></img>
+          <img src={location.image}></img>
           <p>{location.name}</p>
           <p>{location.description}</p>
           <button onClick={() => handleClick(location._id)}>More Info</button>
