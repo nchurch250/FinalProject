@@ -40,6 +40,7 @@ function App() {
 
     for (let i = 0; i < locations.length; i++) {
       const location = locations[i]
+      console.log(location.images[0].url)
 
       return (<div>
         <h1>Browse view</h1>
