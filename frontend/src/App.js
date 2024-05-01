@@ -58,7 +58,6 @@ function App() {
     return (<div>
       <h1>Browse view</h1>
       <button onClick={() => setView(0)}>Browse</button>
-      <button onClick={() => setView(1)}>Specific Location</button>
       <button onClick={() => setView(2)}>Authors</button>
       <div id="locationBoxes">{locationBoxes}</div>
     </div>);
@@ -68,9 +67,7 @@ function App() {
 
     return (<div>
       <h1>Specific location</h1>
-      <button onClick={() => setView(0)}>Browse</button>
-      <button onClick={() => setView(1)}>Specific Location</button>
-      <button onClick={() => setView(2)}>Authors</button>
+      <button onClick={() => setView(0)}>Back to Browse</button>
 
     </div>);
   }
@@ -80,7 +77,6 @@ function App() {
     return (<div>
       <h1>Website Authors</h1>
       <button onClick={() => setView(0)}>Browse</button>
-      <button onClick={() => setView(1)}>Specific Location</button>
       <button onClick={() => setView(2)}>Authors</button>
       <div class="author">
         <div>
