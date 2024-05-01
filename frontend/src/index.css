@@ -1,7 +1,21 @@
 .author {
-    Display: flex;
+    display: flex;
 }
 
 .author div{
     padding: 5%;
+}
+
+.locationBox {
+    display: inline-block;
+    border-width: 3px;
+    border-color: black;
+    border-style: outset;
+    align-content: center;
+    width: 70%;
+    margin: 5%
+}
+
+#locationBoxes {
+    display: flex;
 }

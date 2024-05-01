@@ -36,25 +36,35 @@ function App() {
   }
 
   function View1() {
+    const locationBoxes = [];
 
+    const handleClick = (locationID) => {
+      setViewer(1);
+    };
 
     for (let i = 0; i < locations.length; i++) {
       const location = locations[i]
-      console.log(location.images[0].url)
 
-      return (<div>
-        <h1>Browse view</h1>
-        <img src={location.images[0].url}></img>
-        <p>{location.name}</p>
-        <p>{location.description}</p>
-      </div>);
+      locationBoxes.push(
+        <div class="locationBox">
+          <img src={location.images}></img>
+          <p>{location.name}</p>
+          <p>{location.description}</p>
+          <button onClick={() => handleClick(location._id)}>More Info</button>
+        </div>
+      );
     }
+
+    return (<div>
+      <h1>Browse view</h1>
+      <div id="locationBoxes">{locationBoxes}</div>
+    </div>);
   }
 
   function View2() {
 
     return (<div>
-
+      <h1>Specific location</h1>
     </div>);
   }
 
