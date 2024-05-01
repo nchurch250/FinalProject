@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function App() {
   const [viewer, setViewer] = useState(0);
   const [locations, setLocations] = useState([]);
+  const [oneLocation, setOneLocation] = useState();
 
   const setView = (view) => {
     setViewer(view)
@@ -35,10 +36,24 @@ function App() {
       });
   }
 
+  function getOneLocation(id) {
+    fetch("http://localhost:8081/read/" + id, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => response.json())
+    .then((data) => {
+      setOneLocation(data);
+    });
+  }
+
   function View1() {
     const locationBoxes = [];
 
     const handleClick = (locationID) => {
+      getOneLocation(locationID);
       setViewer(1);
     };
 
@@ -46,7 +61,7 @@ function App() {
       const location = locations[i]
 
       locationBoxes.push(
-        <div class="locationBox">
+        <div key={location._id} className="locationBox">
           <img src={location.images}></img>
           <p>{location.name}</p>
           <p>{location.description}</p>
@@ -78,7 +93,7 @@ function App() {
       <h1>Website Authors</h1>
       <button onClick={() => setView(0)}>Browse</button>
       <button onClick={() => setView(2)}>Authors</button>
-      <div class="author">
+      <div className="author">
         <div>
           <h3>Nathan Church</h3>
         </div>
