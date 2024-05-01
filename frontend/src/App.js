@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 function App() {
   const [viewer, setViewer] = useState(0);
   const [locations, setLocations] = useState([]);
-  const [oneLocation, setOneLocation] = useState();
 
   const setView = (view) => {
     setViewer(view)
@@ -45,7 +44,7 @@ function App() {
     })
     .then(response => response.json())
     .then((data) => {
-      setOneLocation(data);
+      setLocations(data);
     });
   }
 
@@ -61,11 +60,11 @@ function App() {
       const location = locations[i]
 
       locationBoxes.push(
-        <div key={location._id} className="locationBox">
+        <div key={location.id} className="locationBox">
           <img src={location.images}></img>
           <p>{location.name}</p>
           <p>{location.description}</p>
-          <button onClick={() => handleClick(location._id)}>More Info</button>
+          <button onClick={() => handleClick(location.id)}>More Info</button>
         </div>
       );
     }
@@ -80,9 +79,12 @@ function App() {
 
   function View2() {
 
+    const location = locations[0];
+
     return (<div>
       <h1>Specific location</h1>
       <button onClick={() => setView(0)}>Back to Browse</button>
+      <p>{location.name}</p>
 
     </div>);
   }
