@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import nathanPicture from './images/nathan.jpg';
+import daltonPicture from './images/DaltonPicture.jpg';
+
 
 function App() {
   const [viewer, setViewer] = useState(0);
@@ -93,19 +96,25 @@ function App() {
       <h1>Website Authors</h1>
       <button onClick={() => setView(0)}>Browse</button>
       <button onClick={() => setView(2)}>Authors</button>
+      <br />
+      <br />
       <div class="author">
         <div class="container-wrapper">
+
           <div class="container">
-              <img src='/var/www/html/frontend/public/nathan.jpg' alt="Picture of Nathan" style={{borderRadius: 10}} />
+              <img src={nathanPicture} alt="Picture of Nathan" />
               <p>Nathan Church<br />
               <a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a></p>
           </div>
 
           <div class="container">
-            <img src="./images/DaltonPicture.jpg" alt="Picture of Dalton" style={{borderRadius: 10}} />
-            <p>Dalton Clark<br />
+            <img src={daltonPicture} alt="Picture of Dalton" />
+            <p>Hello! My name is Dalton Clark and I am a Computer Science major attending Iowa State University. <br />
+              This is our final project for Com S 319 and I have completed Com S 227, 228, 230, and 309.<br />
             <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+            
           </div>
+
         </div>
       </div>
     </div>);
