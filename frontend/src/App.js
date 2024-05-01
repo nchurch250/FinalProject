@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, { useState } from 'react';
 
 function App() {
   const [viewer, setViewer] = useState(0);
@@ -31,13 +31,13 @@ function App() {
     })
       .then(response => response.json())
       .then((data) => {
-      setLocations(data);
+        setLocations(data);
       });
   }
 
   function View1() {
 
-    
+
     for (let i = 0; i < locations.length; i++) {
       const location = locations[i]
 
@@ -49,22 +49,29 @@ function App() {
       </div>);
     }
   }
-  
+
   function View2() {
-    
+
     return (<div>
 
-      </div>);
+    </div>);
   }
 
   function View3() {
-    
+
     return (<div>
-        <h1>Website Authors</h1>
-        
-      </div>);
+      <h1>Website Authors</h1>
+      <div class="author">
+        <div>
+          <h3>Nathan Church</h3>
+        </div>
+        <div>
+          <h3>Dalton Clark</h3>
+        </div>
+      </div>
+    </div>);
   }
-  
+
 
 
 

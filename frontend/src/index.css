@@ -1,0 +1,7 @@
+.author {
+    Display: flex;
+}
+
+.author div{
+    padding: 5%;
+}
