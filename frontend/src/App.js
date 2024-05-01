@@ -6,7 +6,6 @@ import daltonPicture from './images/DaltonPicture.jpg';
 function App() {
   const [viewer, setViewer] = useState(0);
   const [locations, setLocations] = useState([]);
-  const [oneLocation, setOneLocation] = useState();
 
   const setView = (view) => {
     setViewer(view)
@@ -48,7 +47,7 @@ function App() {
     })
     .then(response => response.json())
     .then((data) => {
-      setOneLocation(data);
+      setLocations(data);
     });
   }
 
@@ -68,7 +67,7 @@ function App() {
           <img src={location.image}></img>
           <p>{location.name}</p>
           <p>{location.description}</p>
-          <button onClick={() => handleClick(location._id)}>More Info</button>
+          <button onClick={() => handleClick(location.id)}>More Info</button>
         </div>
       );
     }
@@ -83,9 +82,12 @@ function App() {
 
   function View2() {
 
+    const location = locations[0];
+
     return (<div>
       <h1>Specific location</h1>
       <button onClick={() => setView(0)}>Back to Browse</button>
+      <p>{location.name}</p>
 
     </div>);
   }
