@@ -163,10 +163,6 @@ input[type=number] {
     background-color: white;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-}
 #root {
     display: flex;
     flex-direction: column;
@@ -196,4 +192,33 @@ form {
 
 .slideImage.active {
     display: block;
+}
+
+#floatRight {
+    float: right;
+}
+
+.locationMiniPreview {
+    display: inline-block;
+    border-width: 3px;
+    border-color: black;
+    border-style: outset;
+    align-content: center;
+    width: 30%;
+    margin: 5%
+}
+
+.locationMiniPreview {
+    display: inline-block;
+    word-wrap: break-word;
+    border-width: 3px;
+    border-color: black;
+    border-style: outset;
+    align-content: center;
+    width: 20%;
+    margin: 5%
+}
+
+.locationMiniPreview img{
+    width: 100%;
 }
