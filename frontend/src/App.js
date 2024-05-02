@@ -36,15 +36,7 @@ function App() {
     }
   }
 
-  async function checkHighestId() {
-    while (true) {
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      getAllLocations();
-    }
-  }
-
   function getAllLocations() {
-    let result;
     fetch("http://localhost:8081/read", {
       method: "GET",
       headers: {
@@ -54,10 +46,8 @@ function App() {
       .then(response => response.json())
       .then((data) => {
         setLocations(data);
-        result = data;
+        setHighestId(data[data.length-1].id);
       });
-    findHighestId();
-    return result;
   }
 
   function getOneLocation(id) {
@@ -84,17 +74,6 @@ function App() {
       .then((data) => {
         setAuthors(data);
       });
-  }
-
-  function findHighestId() {
-    let highestId = 0;
-    for (let i of locations) {
-      if (i.id > highestId) {
-        highestId = i.id;
-      }
-    }
-    setHighestId(highestId);
-    console.log(highestId);
   }
 
   function View1() {
