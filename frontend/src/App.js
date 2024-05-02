@@ -46,7 +46,12 @@ function App() {
       .then(response => response.json())
       .then((data) => {
         setLocations(data);
-        setHighestId(data[data.length-1].id);
+        if (data.length != 0) {
+          setHighestId(data[data.length-1].id);
+        }
+        else {
+          setHighestId(0);
+        }
       });
   }
 
