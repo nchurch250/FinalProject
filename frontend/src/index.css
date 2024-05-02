@@ -1,45 +1,45 @@
+/* -------------------- General -------------------- */
+
 body {
     margin: 0;
 }
 
-.author {
+#root {
     display: flex;
+    flex-direction: column;
 }
 
-.locationPreview img{
-    width: 100%;
+.page {
+    background-color: #E8EBF7;
+    height: 100vh;
+    overflow: auto;
+}
+
+h1 {
+    margin: 0px;
+    padding: 5px;
 }
 
 
+/* -------------------- General Buttons -------------------- */
 
-.container {
-    background-color: lightgray;
-    box-shadow: 0px 2px 3px black;
-    border-radius: 10px;
-    padding: 0px;
-    text-align: center;
-    flex-basis: 50%;
-    max-width: 35%;
-    margin-bottom: 5%;
+.submitButton {
+    background-color: #ACBED8;
+    font-size: 14px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    padding: 8px 14px;
+    margin: 9px;
+    cursor: pointer;
 }
 
-.container-wrapper {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    
+.submitButton:hover {
+    border-color: #ACBED8;
+    background-color: white;
 }
 
-.container img {
-    border-radius: 10px;
-    max-width: 100%;
-    object-fit: cover;
-}
 
-.footer-padding {
-    padding-bottom: 60px;
-}
+/* -------------------- Footer -------------------- */
 
 footer {
     color: white;
@@ -56,7 +56,7 @@ footer p {
     margin: 2px;
 }
 
-footer a{
+footer a {
     color: white;
     text-decoration: none;
     cursor: pointer;
@@ -64,51 +64,8 @@ footer a{
 
 footer a:hover {color: gold}
 
-h1 {
-    margin: 0px;
-    padding: 5px;
-}
 
-#locationBrowse {
-    display: flex;
-    min-height: 100vh;
-}
-
-.locationPreview {
-    display: inline-block;
-    border-width: 3px;
-    border-color: black;
-    border-style: outset;
-    align-content: center;
-    width: 50%;
-    margin: 5%
-}
-
-.textButton {
-    cursor: pointer;
-    margin: 2%;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.textButton:hover {color: gold}
-
-#backButton{
-    border: none;
-    background-color: #ACBED8;
-    font-size: 20px;
-    border-radius: 8px;
-    transition-duration: 0.4s;
-    padding: 12px 28px;
-    margin: 10px;
-    cursor: pointer;
-}
-
-.page {
-    background-color: #E8EBF7;
-    height: 100vh;
-    overflow: auto;
-}
+/* -------------------- Nav Bar -------------------- */
 
 nav {
     display: flex;
@@ -133,48 +90,52 @@ nav button:hover {
     background-color: white;
 }
 
-input[type=text] {
-    display: block;
+
+/* -------------------- Browse Page -------------------- */
+
+#locationBrowse {
+    display: flex;
+    min-height: 100vh;
+}
+
+.locationPreview {
+    display: inline-block;
+    border-width: 3px;
+    border-color: black;
+    border-style: outset;
+    align-content: center;
     width: 50%;
-    padding: 6px 10px;
-    margin: 8px;
-    box-sizing: border-box;
+    margin: 5%
 }
 
-input[type=number] {
-    display: block;
-    width: 16%;
-    padding: 6px 10px;
-    margin: 8px;
-    box-sizing: border-box;
+.locationPreview img {
+    width: 100%;
 }
 
-.submitButton {
+.textButton {
+    cursor: pointer;
+    margin: 2%;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.textButton:hover {color: gold}
+
+
+/* -------------------- Slide Show Page -------------------- */
+
+#backButton{
+    border: none;
     background-color: #ACBED8;
-    font-size: 14px;
+    font-size: 20px;
     border-radius: 8px;
     transition-duration: 0.4s;
-    padding: 8px 14px;
-    margin: 9px;
+    padding: 12px 28px;
+    margin: 10px;
     cursor: pointer;
 }
 
-.submitButton:hover {
-    border-color: #ACBED8;
-    background-color: white;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-#root {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-
-#locationMain {
+#slideshowMain {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -197,4 +158,59 @@ form {
 
 .slideImage.active {
     display: block;
+}
+
+
+/* -------------------- Update Page -------------------- */
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=text] {
+    display: block;
+    width: 50%;
+    padding: 6px 10px;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+input[type=number] {
+    display: block;
+    width: 16%;
+    padding: 6px 10px;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+
+/* -------------------- Website Authors Page -------------------- */
+
+.author {
+    display: flex;
+}
+
+.container {
+    background-color: lightgray;
+    box-shadow: 0px 2px 3px black;
+    border-radius: 10px;
+    padding: 0px;
+    text-align: center;
+    flex-basis: 50%;
+    max-width: 35%;
+    margin-bottom: 5%;
+}
+
+.container-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.container img {
+    border-radius: 10px;
+    max-width: 100%;
+    object-fit: cover;
 }

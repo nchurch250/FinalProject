@@ -138,7 +138,7 @@ function App() {
 
     return (<div className="page">
       <button id="backButton" onClick={() => setView(0)}>Back to Browse</button>
-      <div id="locationMain">
+      <div id="slideshowMain">
         <div className="slideshow">
         {allImages.map((image, index) => (
           <img key={index} className={index === slideshow ? "slideImage active" : "slideImage"} src={image}></img>
@@ -206,7 +206,6 @@ function App() {
       </footer>
     </div>);
   }
-
 
   function View4() {
 
