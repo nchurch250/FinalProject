@@ -46,7 +46,12 @@ function App() {
       .then(response => response.json())
       .then((data) => {
         setLocations(data);
-        setHighestId(data[data.length-1].id);
+        if (data.length != 0) {
+          setHighestId(data[data.length-1].id);
+        }
+        else {
+          setHighestId(0);
+        }
       });
   }
 
@@ -88,7 +93,7 @@ function App() {
       const location = locations[i]
 
       locationBoxes.push(
-        <div key={location._id} className="locationPreview">
+        <div key={location.id} className="locationPreview">
           <img src={location.images[0]}></img>
           <p className="textButton" onClick={() => handleClick(location.id)}>{location.name}</p>
         </div>
@@ -234,23 +239,28 @@ function App() {
       event.preventDefault();
       getAllLocations();
 
-      fetch("http://localhost:8081/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(newLocation)
-      })
-        .then(response => response.json())
+      if (event.target.name.value.length == 0 || event.target.description.value.length == 0 || event.target.images.value.length == 0) {
+        alert("All fields must be populated in order to submit");
+      }
+      else {
+        fetch("http://localhost:8081/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newLocation)
+        })
+          .then(response => response.json())
 
-      alert("Location and Cover Picture Added to Database with ID: " + newLocation.id);
-      getAllLocations();
-      setNewLocation({
-        id: (highestId + 1),
-        images: [],
-        name: '',
-        description: ''
-      });
+        alert("Location and Cover Picture Added to Database with ID: " + newLocation.id);
+        getAllLocations();
+        setNewLocation({
+          id: (highestId + 1),
+          images: [],
+          name: '',
+          description: ''
+        });
+      }
     };
 
     const handleChange = (event) => {
@@ -328,10 +338,12 @@ function App() {
 
     //Change this for making preview look good
     const showOneLocation = location.map((el) => (
-      <div key={el.id}>
-        <img src={el.images[0]} width={30} alt="images" /> <br />
-        Name: {el.name} <br />
-        Description: {el.description}
+      <div key={el.id} className="locationMiniPreview" id="floatRight">
+          <img src={el.images[0]} />
+          Name: <br />
+          {el.name} <br /> <br />
+          Description: <br />
+          {el.description} 
       </div>
     ));
 
@@ -384,6 +396,8 @@ function App() {
 
         <br />
         <br />
+        {showOneLocation}
+        <div>
         <form onSubmit={handleSubmit}>
           <div>
             <h1>Create New Location and Cover Picture</h1>
@@ -416,7 +430,7 @@ function App() {
             <input className="submitButton" type="submit" value="Submit" />
           </div>
         </form>
-        {showOneLocation}
+        </div>
 
         <footer>
           <p>Contact:</p>

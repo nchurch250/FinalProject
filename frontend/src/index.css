@@ -135,6 +135,11 @@ nav button:hover {
     cursor: pointer;
 }
 
+.submitButton:hover {
+    border-color: #ACBED8;
+    background-color: white;
+}
+
 #slideshowMain {
     display: flex;
     flex-direction: column;
@@ -213,4 +218,35 @@ input[type=number] {
     border-radius: 10px;
     max-width: 100%;
     object-fit: cover;
+}
+
+
+
+#floatRight {
+    float: right;
+}
+
+.locationMiniPreview {
+    display: inline-block;
+    border-width: 3px;
+    border-color: black;
+    border-style: outset;
+    align-content: center;
+    width: 30%;
+    margin: 5%
+}
+
+.locationMiniPreview {
+    display: inline-block;
+    word-wrap: break-word;
+    border-width: 3px;
+    border-color: black;
+    border-style: outset;
+    align-content: center;
+    width: 20%;
+    margin: 5%
+}
+
+.locationMiniPreview img {
+    width: 100%;
 }
