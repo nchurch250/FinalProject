@@ -249,8 +249,6 @@ function App() {
   }
 
 
-
-
   return (<div>
     {viewer === 0 && <View1 />}
     {viewer === 1 && <View2 />}
