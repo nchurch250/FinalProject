@@ -71,6 +71,7 @@ h1 {
 
 #locationBrowse {
     display: flex;
+    min-height: 100vh;
 }
 
 .locationPreview {
