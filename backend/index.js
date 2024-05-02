@@ -18,12 +18,20 @@ app.listen(port, () => {
 const mongoose = require('mongoose');
 
 const locationSchema = new mongoose.Schema({
-    image: String,
+    id: {type: Number, required: true, unique: true},
+    images: [String],
     name: String,
     description: String
 }, { collection: 'locations' });
 
 const Location = mongoose.model('Location', locationSchema);
+
+const authorSchema = new mongoose.Schema({
+    id: {type: Number, required: true, unique: true},
+    image: String
+}, { collection: 'author_pictures' });
+
+const Author_Pictures = mongoose.model('Author_Pictures', authorSchema);
 
 mongoose.connect('mongodb://127.0.0.1:27017/finaldata')
     .then(() => {
@@ -32,6 +40,12 @@ mongoose.connect('mongodb://127.0.0.1:27017/finaldata')
     .catch(err => {
         console.error("Error connecting to MongoDB:", err);
     });
+
+app.get("/authors", async (req, res) => {
+    const result = await Author_Pictures.find();
+
+    res.json(result);
+});
 
 app.get("/", async (req, res) => {
 
@@ -49,4 +63,11 @@ app.get("/read/:id", async (req, res) => {
     const product = await Location.find({"id": id});
 
     res.json(product);
+});
+
+app.post("/create", async (req, res) => {
+    const locationData = req.body;
+
+    const result = new Location(locationData);
+    result.save()
 });

@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
-import nathanPicture from './images/nathan.jpg';
-import daltonPicture from './images/DaltonPicture.jpg';
+import React, { useState, useEffect } from 'react';
 
 
 function App() {
   const [viewer, setViewer] = useState(0);
   const [locations, setLocations] = useState([]);
+  const [authors, setAuthors] = useState([]);
+
+  //Initial load functions
+  useEffect(() => {
+  getAllAuthors(); 
+  getAllLocations();
+  }, [])
 
   const setView = (view) => {
     setViewer(view)
@@ -20,12 +25,17 @@ function App() {
         break;
 
       case 2:
+        getAllAuthors();
+        break;
+
+      case 3:
 
         break;
     }
   }
 
   function getAllLocations() {
+    let result;
     fetch("http://localhost:8081/read", {
       method: "GET",
       headers: {
@@ -35,7 +45,9 @@ function App() {
       .then(response => response.json())
       .then((data) => {
         setLocations(data);
+        result = data;
       });
+      return result;
   }
 
   function getOneLocation(id) {
@@ -45,9 +57,22 @@ function App() {
         "Content-Type": "application/json"
       }
     })
+    .then(response => response.json())
+    .then((data) => {
+      setLocations(data);
+    });
+  }
+
+  function getAllAuthors() {
+    fetch("http://localhost:8081/authors", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
       .then(response => response.json())
       .then((data) => {
-        setLocations(data);
+        setAuthors(data);
       });
   }
 
@@ -63,24 +88,21 @@ function App() {
       const location = locations[i]
 
       locationBoxes.push(
-        <div key={location._id} className="locationPreview">
-          <img src={location.image} alt=''></img>
-          <p className="textButton" onClick={() => handleClick(location.id)}>{location.name}</p>
+        <div key={location._id} className="locationBox">
+          <img src={location.images[0]}></img>
+          <p>{location.name}</p>
+          <p>{location.description}</p>
+          <button onClick={() => handleClick(location.id)}>More Info</button>
         </div>
       );
     }
 
-    return (<div className="page">
-      <header>
-        <h1>Browse Locations</h1>
-      </header>
-
-      <nav>
-        <button onClick={() => setView(0)}>Browse</button>
-        <button onClick={() => setView(2)}>Authors</button>
-      </nav>
-
-      <div id="locationBrowse">{locationBoxes}</div>
+    return (<div>
+      <h1>Browse view</h1>
+      <button onClick={() => setView(0)}>Browse</button>
+      <button onClick={() => setView(3)}>Update Pictures</button>
+      <button onClick={() => setView(2)}>Authors</button>
+      <div id="locationBoxes">{locationBoxes}</div>
     </div>);
   }
 
@@ -100,29 +122,24 @@ function App() {
 
   function View3() {
 
-    return (<div className="page">
-      <header>
-        <h1>Website Authors</h1>
-      </header>
-
-      <nav>
-        <button onClick={() => setView(0)}>Browse</button>
-        <button onClick={() => setView(2)}>Authors</button>
-      </nav>
-
+    return (<div>
+      <h1>Website Authors</h1>
+      <button onClick={() => setView(0)}>Browse</button>
+      <button onClick={() => setView(3)}>Update Pictures</button>
+      <button onClick={() => setView(2)}>Authors</button>
       <br />
       <br />
       <div className="author">
         <div className="container-wrapper">
 
-          <div className="container">
-            <img src={nathanPicture} alt="Picture of Nathan" />
-            <p>My name is Nathan Church, I am an undergraduate student at Iowa State University.<br />
+          <div class="container">
+              <img src={authors.find(item => item.id === 2).image} alt="Picture of Nathan" />
+              <p>Nathan Church<br />
               <a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a></p>
           </div>
 
-          <div className="container">
-            <img src={daltonPicture} alt="Picture of Dalton" />
+          <div class="container">
+            <img src={authors.find(item => item.id === 1).image} alt="Picture of Dalton" />
             <p>Hello! My name is Dalton Clark and I am a Computer Science major attending Iowa State University. <br />
               This is our final project for Com S 319 and I have completed Com S 227, 228, 230, and 309.<br />
               <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
@@ -134,6 +151,83 @@ function App() {
   }
 
 
+  function View4() {
+   
+    const [newLocation, setNewLocation] = useState({
+      id: (locations.length + 1),
+      images: [],
+      name: '',
+      description: ''
+    });
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      getAllLocations();
+
+      fetch("http://localhost:8081/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newLocation)
+      })
+      .then(response => response.json())
+
+      alert("Location and Cover Picture Added to Database with ID: " + newLocation.id);
+      getAllLocations();
+      setNewLocation({
+        id: (locations.length + 1),
+        images: [],
+        name: '',
+        description: ''
+      });
+    };
+
+    const handleChange = (event) => {
+      let value = event.target.value;
+      let name = event.target.name;
+   
+      setNewLocation((prevalue) => {
+        return {
+          ...prevalue,   // Spread Operator               
+          [name]: value
+        }
+      })
+    }
+   
+    return (
+      <div>
+        <h1>Update Pictures</h1>
+        <button onClick={() => setView(0)}>Browse</button>
+        <button onClick={() => setView(3)}>Update Pictures</button>
+        <button onClick={() => setView(2)}>Authors</button>
+        <br />
+        <br />
+        <form onSubmit={handleSubmit}>
+          <div>
+            <h1>Create New Location and Cover Picture</h1>
+            <input type='text' placeholder='Name of the Location'
+              onChange={handleChange} name='name' />
+            <input type='text' placeholder='Description of the Location'
+              onChange={handleChange} name='description' />
+            <input type='text' placeholder='Cover Image Link'
+              onChange={handleChange} name='images' />
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <h1>Add Picture to Location with ID</h1>
+            <input type='number' placeholder='ID of the location'
+              onChange={handleChange} name='name' />
+            <input type='text' placeholder='Image Link'
+              onChange={handleChange} name='description' />
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+      </div>
+    );
+  }
 
 
 
@@ -142,6 +236,7 @@ function App() {
     {viewer === 0 && <View1 />}
     {viewer === 1 && <View2 />}
     {viewer === 2 && <View3 />}
+    {viewer === 3 && <View4 />}
 
     <footer>
       <p>Contact:</p>
