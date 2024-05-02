@@ -47,7 +47,7 @@ function App() {
       .then((data) => {
         setLocations(data);
         if (data.length != 0) {
-          setHighestId(data[data.length-1].id);
+          setHighestId(data[data.length - 1].id);
         }
         else {
           setHighestId(0);
@@ -80,6 +80,7 @@ function App() {
         setAuthors(data);
       });
   }
+
 
   function View1() {
     const locationBoxes = [];
@@ -121,13 +122,14 @@ function App() {
     </div>);
   }
 
+
   function View2() {
     const location = locations[0];
 
-    const[slideshow, setSlideshow] = useState(0);
+    const [slideshow, setSlideshow] = useState(0);
     const allImages = [];
-      
-    for (let i = 0; i<location.images.length; i++) {
+
+    for (let i = 0; i < location.images.length; i++) {
       allImages.push(location.images[i]);
     }
 
@@ -139,29 +141,23 @@ function App() {
       setSlideshow((slideshow - 1 + allImages.length) % allImages.length);
     }
 
-
-
     return (<div className="page">
       <button id="backButton" onClick={() => setView(0)}>Back to Browse</button>
       <div id="slideshowMain">
         <div className="slideshow">
-        {allImages.map((image, index) => (
-          <img key={index} className={index === slideshow ? "slideImage active" : "slideImage"} src={image}></img>
-        ))}
-
-
+          {allImages.map((image, index) => (
+            <img key={index} className={index === slideshow ? "slideImage active" : "slideImage"} src={image}></img>
+          ))}
         </div>
-          <div className="slideButtons">
-          <button className="submitButton" onClick={prevSlide}>Previous</button>
-        <button className="submitButton" onClick={nextSlide}>Next</button>
 
-          </div>
+        <div className="slideButtons">
+          <button className="submitButton" onClick={prevSlide}>Previous</button>
+          <button className="submitButton" onClick={nextSlide}>Next</button>
+        </div>
 
         <p>Location Name: {location.name}</p>
         <p>Location Description: {location.description}</p>
-
       </div>
-
 
       <footer>
         <p>Contact:</p>
@@ -173,7 +169,6 @@ function App() {
   function View3() {
 
     return (<div className="page">
-
       <header>
         <h1>Website Authors</h1>
       </header>
@@ -234,7 +229,6 @@ function App() {
       description: ''
     });
 
-
     const handleSubmit = async (event) => {
       event.preventDefault();
       getAllLocations();
@@ -275,11 +269,6 @@ function App() {
       })
     }
 
-
-
-
-
-
     //PUT stuff
     const [location, setLocation] = useState([]);
     const [newImage, setNewImage] = useState("");
@@ -310,7 +299,6 @@ function App() {
       }
     };
 
-
     const handleChangeLocation = (event) => {
       if (event.target.value.length != 0) {
         fetch("http://localhost:8081/read/" + event.target.value, {
@@ -333,24 +321,16 @@ function App() {
       setNewImage(event.target.value);
     };
 
-
-
-
     //Change this for making preview look good
     const showOneLocation = location.map((el) => (
       <div key={el.id} className="locationMiniPreview" id="floatRight">
-          <img src={el.images[0]} />
-          Name: <br />
-          {el.name} <br /> <br />
-          Description: <br />
-          {el.description} 
+        <img src={el.images[0]} />
+        Name: <br />
+        {el.name} <br /> <br />
+        Description: <br />
+        {el.description}
       </div>
     ));
-
-
-
-
-
 
     //DELETE stuff
     const handleSubmitDelete = (event) => {
@@ -377,10 +357,6 @@ function App() {
       }
     };
 
-
-
-
-
     return (
       <div className="page">
 
@@ -398,38 +374,38 @@ function App() {
         <br />
         {showOneLocation}
         <div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <h1>Create New Location and Cover Picture</h1>
-            <input type='text' placeholder='Name of the Location'
-              onChange={handleChange} name='name' />
-            <input id="descriptionInput" type='text' placeholder='Description of the Location'
-              onChange={handleChange} name='description' />
-            <input type='text' placeholder='Cover Image Link'
-              onChange={handleChange} name='images' />
-            <input className="submitButton" type="submit" value="Submit" />
-          </div>
-        </form>
-        <form onSubmit={handleSubmitPut}>
-          <div>
-            <h1>Add Picture to Location with ID</h1>
-            <input type='number' placeholder='ID of the location'
-              onChange={handleChangeLocation} name='id' />
-            <input type='text' placeholder='Image Link'
-              onChange={handleChangePut} name='images' />
-            <input className="submitButton" type="submit" value="Submit" />
-          </div>
-        </form>
-        <form onSubmit={handleSubmitDelete}>
-          <div>
-            <h1>Delete a Location with ID</h1>
-            <input type='number' placeholder='ID of the location'
-              onChange={handleChangeLocation} name='id' />
-            <input type='text' placeholder="Type 'yes' to confirm"
-              name='confirmation' />
-            <input className="submitButton" type="submit" value="Submit" />
-          </div>
-        </form>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <h1>Create New Location and Cover Picture</h1>
+              <input type='text' placeholder='Name of the Location'
+                onChange={handleChange} name='name' />
+              <input id="descriptionInput" type='text' placeholder='Description of the Location'
+                onChange={handleChange} name='description' />
+              <input type='text' placeholder='Cover Image Link'
+                onChange={handleChange} name='images' />
+              <input className="submitButton" type="submit" value="Submit" />
+            </div>
+          </form>
+          <form onSubmit={handleSubmitPut}>
+            <div>
+              <h1>Add Picture to Location with ID</h1>
+              <input type='number' placeholder='ID of the location'
+                onChange={handleChangeLocation} name='id' />
+              <input type='text' placeholder='Image Link'
+                onChange={handleChangePut} name='images' />
+              <input className="submitButton" type="submit" value="Submit" />
+            </div>
+          </form>
+          <form onSubmit={handleSubmitDelete}>
+            <div>
+              <h1>Delete a Location with ID</h1>
+              <input type='number' placeholder='ID of the location'
+                onChange={handleChangeLocation} name='id' />
+              <input type='text' placeholder="Type 'yes' to confirm"
+                name='confirmation' />
+              <input className="submitButton" type="submit" value="Submit" />
+            </div>
+          </form>
         </div>
 
         <footer>
