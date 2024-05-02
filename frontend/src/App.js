@@ -360,7 +360,8 @@ function App() {
     return (
       <div className="page">
 
-        <header>
+<div className="inPage">
+<header>
           <h1>Update Pictures</h1>
         </header>
 
@@ -412,6 +413,10 @@ function App() {
           <p>Contact:</p>
           <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
         </footer>
+        
+</div>
+
+        
       </div>
     );
   }

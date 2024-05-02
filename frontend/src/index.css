@@ -15,6 +15,10 @@ body {
     overflow: auto;
 }
 
+.inPage {
+    flex: 1;
+}
+
 h1 {
     margin: 0px;
     padding: 5px;
@@ -46,7 +50,7 @@ footer {
     background-color: rgb(67, 67, 67);
     border-color: rgb(67, 67, 67);
     border-style: solid;
-    position: relative;
+    /* position: relative; */
     bottom: 0;
     height: 45px;
     margin-top: 10px;
