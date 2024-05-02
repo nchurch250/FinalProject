@@ -9,9 +9,9 @@ function App() {
 
   //Initial load functions
   useEffect(() => {
-  getAllAuthors(); 
-  getAllLocations();
-  // checkHighestId();
+    getAllAuthors();
+    getAllLocations();
+    // checkHighestId();
   }, [])
 
   const setView = (view) => {
@@ -56,8 +56,8 @@ function App() {
         setLocations(data);
         result = data;
       });
-      findHighestId();
-      return result;
+    findHighestId();
+    return result;
   }
 
   function getOneLocation(id) {
@@ -129,6 +129,11 @@ function App() {
       </nav>
 
       <div id="locationBrowse">{locationBoxes}</div>
+
+      <footer>
+        <p>Contact:</p>
+        <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+      </footer>
     </div>);
   }
 
@@ -143,6 +148,11 @@ function App() {
         <p>{location.name}</p>
         <p>{location.description}</p>
       </div>
+
+      <footer>
+        <p>Contact:</p>
+        <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+      </footer>
     </div>);
   }
 
@@ -180,6 +190,11 @@ function App() {
 
         </div>
       </div>
+
+      <footer>
+        <p>Contact:</p>
+        <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+      </footer>
     </div>);
   }
 
@@ -205,7 +220,7 @@ function App() {
       name: '',
       description: ''
     });
-    
+
 
     const handleSubmit = async (event) => {
       event.preventDefault();
@@ -267,9 +282,9 @@ function App() {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({"image": newImage})
+          body: JSON.stringify({ "image": newImage })
         })
-        .then(response => response.json())
+          .then(response => response.json())
 
         alert("Added new image to location ID: " + location[0].id);
         setNewImage("");
@@ -286,10 +301,10 @@ function App() {
             "Content-Type": "application/json"
           }
         })
-        .then(response => response.json())
-        .then((data) => {
-          setLocation(data);
-        });
+          .then(response => response.json())
+          .then((data) => {
+            setLocation(data);
+          });
       }
       else {
         setLocation([]);
@@ -306,46 +321,46 @@ function App() {
     //Change this for making preview look good
     const showOneLocation = location.map((el) => (
       <div key={el.id}>
-      <img src={el.images[0]} width={30} alt="images" /> <br />
-      Name: {el.name} <br />
-      Description: {el.description}
+        <img src={el.images[0]} width={30} alt="images" /> <br />
+        Name: {el.name} <br />
+        Description: {el.description}
       </div>
-      ));
+    ));
 
 
 
 
 
 
-      //DELETE stuff
-      const handleSubmitDelete = (event) => {
-        event.preventDefault();
-        getAllLocations();
+    //DELETE stuff
+    const handleSubmitDelete = (event) => {
+      event.preventDefault();
+      getAllLocations();
 
-        if (!locationIdExists(event.target.id.value)) {
-          alert("No valid location ID selected");
-        }
-        else if (event.target.confirmation.value != "yes") {
-          alert("Enter 'yes' to confirm deletion");
-        }
-        else {
-          fetch("http://localhost:8081/delete/" + location[0].id, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json"
-            }
-          })
+      if (!locationIdExists(event.target.id.value)) {
+        alert("No valid location ID selected");
+      }
+      else if (event.target.confirmation.value != "yes") {
+        alert("Enter 'yes' to confirm deletion");
+      }
+      else {
+        fetch("http://localhost:8081/delete/" + location[0].id, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
           .then(response => response.json())
 
-          alert("Deleted Location with ID: " + location[0].id);
-          setLocation([]);
-        }
-      };
+        alert("Deleted Location with ID: " + location[0].id);
+        setLocation([]);
+      }
+    };
 
 
 
 
-   
+
     return (
       <div className="page">
 
@@ -380,7 +395,7 @@ function App() {
               onChange={handleChangeLocation} name='id' />
             <input type='text' placeholder='Image Link'
               onChange={handleChangePut} name='images' />
-            <input type="submit" value="Submit" />
+            <input className="submitButton" type="submit" value="Submit" />
           </div>
         </form>
         <form onSubmit={handleSubmitDelete}>
@@ -390,14 +405,15 @@ function App() {
               onChange={handleChangeLocation} name='id' />
             <input type='text' placeholder="Type 'yes' to confirm"
               name='confirmation' />
-            <input type="submit" value="Submit" />
+            <input className="submitButton" type="submit" value="Submit" />
           </div>
         </form>
         {showOneLocation}
-        <br />
-        <br />
-        <br />
-        <br />
+
+        <footer>
+          <p>Contact:</p>
+          <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+        </footer>
       </div>
     );
   }
@@ -409,10 +425,7 @@ function App() {
     {viewer === 2 && <View3 />}
     {viewer === 3 && <View4 />}
 
-    <footer>
-      <p>Contact:</p>
-      <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
-    </footer>
+
   </div>);
 }
 
