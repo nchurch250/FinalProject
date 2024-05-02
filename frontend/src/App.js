@@ -8,8 +8,8 @@ function App() {
 
   //Initial load functions
   useEffect(() => {
-  getAllAuthors(); 
-  getAllLocations();
+    getAllAuthors();
+    getAllLocations();
   }, [])
 
   const setView = (view) => {
@@ -47,7 +47,7 @@ function App() {
         setLocations(data);
         result = data;
       });
-      return result;
+    return result;
   }
 
   function getOneLocation(id) {
@@ -57,10 +57,10 @@ function App() {
         "Content-Type": "application/json"
       }
     })
-    .then(response => response.json())
-    .then((data) => {
-      setLocations(data);
-    });
+      .then(response => response.json())
+      .then((data) => {
+        setLocations(data);
+      });
   }
 
   function getAllAuthors() {
@@ -88,21 +88,26 @@ function App() {
       const location = locations[i]
 
       locationBoxes.push(
-        <div key={location._id} className="locationBox">
+        <div key={location._id} className="locationPreview">
           <img src={location.images[0]}></img>
-          <p>{location.name}</p>
-          <p>{location.description}</p>
-          <button onClick={() => handleClick(location.id)}>More Info</button>
+          <p className="textButton" onClick={() => handleClick(location.id)}>{location.name}</p>
         </div>
       );
     }
 
-    return (<div>
-      <h1>Browse view</h1>
-      <button onClick={() => setView(0)}>Browse</button>
-      <button onClick={() => setView(3)}>Update Pictures</button>
-      <button onClick={() => setView(2)}>Authors</button>
-      <div id="locationBoxes">{locationBoxes}</div>
+    return (<div className="page">
+
+      <header>
+        <h1>Browse view</h1>
+      </header>
+
+      <nav>
+        <button onClick={() => setView(0)}>Browse</button>
+        <button onClick={() => setView(3)}>Update Pictures</button>
+        <button onClick={() => setView(2)}>Authors</button>
+      </nav>
+
+      <div id="locationBrowse">{locationBoxes}</div>
     </div>);
   }
 
@@ -122,19 +127,26 @@ function App() {
 
   function View3() {
 
-    return (<div>
-      <h1>Website Authors</h1>
-      <button onClick={() => setView(0)}>Browse</button>
-      <button onClick={() => setView(3)}>Update Pictures</button>
-      <button onClick={() => setView(2)}>Authors</button>
+    return (<div className="page">
+
+      <header>
+        <h1>Website Authors</h1>
+      </header>
+
+      <nav>
+        <button onClick={() => setView(0)}>Browse</button>
+        <button onClick={() => setView(3)}>Update Pictures</button>
+        <button onClick={() => setView(2)}>Authors</button>
+      </nav>
+
       <br />
       <br />
       <div className="author">
         <div className="container-wrapper">
 
           <div class="container">
-              <img src={authors.find(item => item.id === 2).image} alt="Picture of Nathan" />
-              <p>Nathan Church<br />
+            <img src={authors.find(item => item.id === 2).image} alt="Picture of Nathan" />
+            <p>My name is Nathan Church, I am an undergraduate student at Iowa State University.<br />
               <a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a></p>
           </div>
 
@@ -152,7 +164,7 @@ function App() {
 
 
   function View4() {
-   
+
     const [newLocation, setNewLocation] = useState({
       id: (locations.length + 1),
       images: [],
@@ -171,7 +183,7 @@ function App() {
         },
         body: JSON.stringify(newLocation)
       })
-      .then(response => response.json())
+        .then(response => response.json())
 
       alert("Location and Cover Picture Added to Database with ID: " + newLocation.id);
       getAllLocations();
@@ -186,7 +198,7 @@ function App() {
     const handleChange = (event) => {
       let value = event.target.value;
       let name = event.target.name;
-   
+
       setNewLocation((prevalue) => {
         return {
           ...prevalue,   // Spread Operator               
@@ -194,13 +206,20 @@ function App() {
         }
       })
     }
-   
+
     return (
-      <div>
-        <h1>Update Pictures</h1>
-        <button onClick={() => setView(0)}>Browse</button>
-        <button onClick={() => setView(3)}>Update Pictures</button>
-        <button onClick={() => setView(2)}>Authors</button>
+      <div className="page">
+
+        <header>
+          <h1>Update Pictures</h1>
+        </header>
+
+        <nav>
+          <button onClick={() => setView(0)}>Browse</button>
+          <button onClick={() => setView(3)}>Update Pictures</button>
+          <button onClick={() => setView(2)}>Authors</button>
+        </nav>
+
         <br />
         <br />
         <form onSubmit={handleSubmit}>
