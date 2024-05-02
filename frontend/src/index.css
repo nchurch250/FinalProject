@@ -6,22 +6,16 @@ body {
     display: flex;
 }
 
-.locationBox {
-    display: inline-block;
-    border-width: 3px;
-    border-color: black;
-    border-style: outset;
-    align-content: center;
-    width: 70%;
-    margin: 5%
-}
-
-.locationBox img{
+.locationPreview img{
     width: 50%;
 }
 
-#locationBoxes {
-    display: flex;
+
+
+#locationMain {
+    position: absolute;
+    top: 40%;
+    left: 40%;
 }
 
 .container {
@@ -32,6 +26,7 @@ body {
     text-align: center;
     flex-basis: 50%;
     max-width: 35%;
+    margin-bottom: 5%;
 }
 
 .container-wrapper {
@@ -54,8 +49,8 @@ body {
 
 footer {
     color: white;
-    background-color: rgb(26, 26, 26);
-    border-color: rgb(26, 26, 26);
+    background-color: rgb(67, 67, 67);
+    border-color: rgb(67, 67, 67);
     border-style: solid;
     position: fixed;
     bottom: 0;
@@ -70,6 +65,75 @@ footer p {
 footer a{
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 footer a:hover {color: gold}
+
+header h1 {
+    margin: 0px;
+    padding: 5px;
+}
+
+#locationBrowse {
+    display: flex;
+}
+
+.locationPreview {
+    display: inline-block;
+    border-width: 3px;
+    border-color: black;
+    border-style: outset;
+    align-content: center;
+    width: 70%;
+    margin: 5%
+}
+
+.textButton {
+    cursor: pointer;
+    margin: 2%;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.textButton:hover {color: gold}
+
+#backButton{
+    border: none;
+    background-color: #ACBED8;
+    font-size: 20px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    padding: 12px 28px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.page {
+    background-color: #E8EBF7;
+    height: 100vh;
+    overflow: auto;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    border-top-width: 3px;
+    border-color: #ACBED8;
+    border-top-style: solid;
+}
+
+nav button{
+    border: none;
+    background-color: #ACBED8;
+    font-size: 20px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    padding: 12px 28px;
+    margin: 10px;
+    cursor: pointer;
+}
+nav button:hover {
+    border-color: #ACBED8;
+    background-color: white;
+}
