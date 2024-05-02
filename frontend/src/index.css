@@ -100,6 +100,7 @@ nav button:hover {
 
 .locationPreview {
     display: inline-block;
+    word-wrap: break-word;
     border-width: 3px;
     border-color: black;
     border-style: outset;
@@ -224,16 +225,6 @@ input[type=number] {
 
 #floatRight {
     float: right;
-}
-
-.locationMiniPreview {
-    display: inline-block;
-    border-width: 3px;
-    border-color: black;
-    border-style: outset;
-    align-content: center;
-    width: 30%;
-    margin: 5%
 }
 
 .locationMiniPreview {
