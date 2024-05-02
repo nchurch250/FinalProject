@@ -117,16 +117,46 @@ function App() {
   }
 
   function View2() {
-
     const location = locations[0];
+
+    const[slideshow, setSlideshow] = useState(0);
+    const allImages = [];
+      
+    for (let i = 0; i<location.images.length; i++) {
+      allImages.push(location.images[i]);
+    }
+
+    const nextSlide = () => {
+      setSlideshow((slideshow + 1) % allImages.length);
+    }
+
+    const prevSlide = () => {
+      setSlideshow((slideshow - 1 + allImages.length) % allImages.length);
+    }
+
+
 
     return (<div className="page">
       <button id="backButton" onClick={() => setView(0)}>Back to Browse</button>
       <div id="locationMain">
-        <img src={location.image} alt=''></img>
-        <p>{location.name}</p>
-        <p>{location.description}</p>
+        <div className="slideshow">
+        {allImages.map((image, index) => (
+          <img key={index} className={index === slideshow ? "slideImage active" : "slideImage"} src={image}></img>
+        ))}
+
+
+        </div>
+          <div className="slideButtons">
+          <button className="submitButton" onClick={prevSlide}>Previous</button>
+        <button className="submitButton" onClick={nextSlide}>Next</button>
+
+          </div>
+
+        <p>Location Name: {location.name}</p>
+        <p>Location Description: {location.description}</p>
+
       </div>
+
 
       <footer>
         <p>Contact:</p>
