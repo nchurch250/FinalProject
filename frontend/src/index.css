@@ -137,3 +137,40 @@ nav button:hover {
     border-color: #ACBED8;
     background-color: white;
 }
+
+input[type=text] {
+    display: block;
+    width: 50%;
+    padding: 6px 10px;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+input[type=number] {
+    display: block;
+    width: 15%;
+    padding: 6px 10px;
+    margin: 8px;
+    box-sizing: border-box;
+}
+
+.submitButton {
+    background-color: #ACBED8;
+    font-size: 14px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    padding: 8px 14px;
+    margin: 9px;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    border-color: #ACBED8;
+    background-color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+

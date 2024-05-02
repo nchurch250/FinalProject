@@ -144,13 +144,13 @@ function App() {
       <div className="author">
         <div className="container-wrapper">
 
-          <div class="container">
+          <div className="container">
             <img src={authors.find(item => item.id === 2).image} alt="Picture of Nathan" />
             <p>My name is Nathan Church, I am an undergraduate student at Iowa State University.<br />
               <a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a></p>
           </div>
 
-          <div class="container">
+          <div className="container">
             <img src={authors.find(item => item.id === 1).image} alt="Picture of Dalton" />
             <p>Hello! My name is Dalton Clark and I am a Computer Science major attending Iowa State University. <br />
               This is our final project for Com S 319 and I have completed Com S 227, 228, 230, and 309.<br />
@@ -227,11 +227,11 @@ function App() {
             <h1>Create New Location and Cover Picture</h1>
             <input type='text' placeholder='Name of the Location'
               onChange={handleChange} name='name' />
-            <input type='text' placeholder='Description of the Location'
+            <input id="descriptionInput" type='text' placeholder='Description of the Location'
               onChange={handleChange} name='description' />
             <input type='text' placeholder='Cover Image Link'
               onChange={handleChange} name='images' />
-            <input type="submit" value="Submit" />
+            <input className="submitButton" type="submit" value="Submit" />
           </div>
         </form>
         <form onSubmit={handleSubmit}>
@@ -241,7 +241,7 @@ function App() {
               onChange={handleChange} name='name' />
             <input type='text' placeholder='Image Link'
               onChange={handleChange} name='description' />
-            <input type="submit" value="Submit" />
+            <input className="submitButton" type="submit" value="Submit" />
           </div>
         </form>
       </div>
