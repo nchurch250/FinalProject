@@ -7,16 +7,10 @@ body {
 }
 
 .locationPreview img{
-    width: 50%;
+    width: 100%;
 }
 
 
-
-#locationMain {
-    position: absolute;
-    top: 40%;
-    left: 40%;
-}
 
 .container {
     background-color: lightgray;
@@ -85,7 +79,7 @@ h1 {
     border-color: black;
     border-style: outset;
     align-content: center;
-    width: 70%;
+    width: 50%;
     margin: 5%
 }
 
@@ -179,3 +173,27 @@ form {
     flex: 1;
 }
 
+#locationMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideshow {
+    position: relative;
+    max-width: 50%;
+    overflow: hidden;
+    border: 5px;
+    border-style: solid;
+}
+
+.slideImage {
+    display: none;
+    width: 100%;
+
+}
+
+.slideImage.active {
+    display: block;
+}
