@@ -5,11 +5,13 @@ function App() {
   const [viewer, setViewer] = useState(0);
   const [locations, setLocations] = useState([]);
   const [authors, setAuthors] = useState([]);
+  const [highestId, setHighestId] = useState(0);
 
   //Initial load functions
   useEffect(() => {
   getAllAuthors(); 
   getAllLocations();
+  // checkHighestId();
   }, [])
 
   const setView = (view) => {
@@ -34,6 +36,13 @@ function App() {
     }
   }
 
+  async function checkHighestId() {
+    while (true) {
+      await new Promise(resolve => setTimeout(resolve, 3000));
+      getAllLocations();
+    }
+  }
+
   function getAllLocations() {
     let result;
     fetch("http://localhost:8081/read", {
@@ -47,6 +56,7 @@ function App() {
         setLocations(data);
         result = data;
       });
+      findHighestId();
       return result;
   }
 
@@ -74,6 +84,17 @@ function App() {
       .then((data) => {
         setAuthors(data);
       });
+  }
+
+  function findHighestId() {
+    let highestId = 0;
+    for (let i of locations) {
+      if (i.id > highestId) {
+        highestId = i.id;
+      }
+    }
+    setHighestId(highestId);
+    console.log(highestId);
   }
 
   function View1() {
@@ -151,15 +172,29 @@ function App() {
 
 
   function View4() {
-   
+
+    function locationIdExists(id) {
+      let exists = false;
+      for (let i of locations) {
+        if (i.id == id) {
+          exists = true;
+          break;
+        }
+      }
+      getAllLocations();
+      return exists;
+    }
+
+    //POST stuff
     const [newLocation, setNewLocation] = useState({
-      id: (locations.length + 1),
+      id: (highestId + 1),
       images: [],
       name: '',
       description: ''
     });
+    
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
       event.preventDefault();
       getAllLocations();
 
@@ -175,7 +210,7 @@ function App() {
       alert("Location and Cover Picture Added to Database with ID: " + newLocation.id);
       getAllLocations();
       setNewLocation({
-        id: (locations.length + 1),
+        id: (highestId + 1),
         images: [],
         name: '',
         description: ''
@@ -193,6 +228,110 @@ function App() {
         }
       })
     }
+
+
+
+
+
+
+    //PUT stuff
+    const [location, setLocation] = useState([]);
+    const [newImage, setNewImage] = useState("");
+
+    const handleSubmitPut = (event) => {
+      event.preventDefault();
+      getAllLocations();
+
+      if (!locationIdExists(event.target.id.value)) {
+        alert("No valid location ID selected");
+      }
+      else if (newImage == "") {
+        alert("Enter an image link");
+      }
+      else {
+        fetch("http://localhost:8081/update/" + location[0].id, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({"image": newImage})
+        })
+        .then(response => response.json())
+
+        alert("Added new image to location ID: " + location[0].id);
+        setNewImage("");
+        setLocation([]);
+      }
+    };
+
+
+    const handleChangeLocation = (event) => {
+      if (event.target.value.length != 0) {
+        fetch("http://localhost:8081/read/" + event.target.value, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        .then(response => response.json())
+        .then((data) => {
+          setLocation(data);
+        });
+      }
+      else {
+        setLocation([]);
+      }
+    };
+
+    const handleChangePut = (event) => {
+      setNewImage(event.target.value);
+    };
+
+
+
+
+    //Change this for making preview look good
+    const showOneLocation = location.map((el) => (
+      <div key={el.id}>
+      <img src={el.images[0]} width={30} alt="images" /> <br />
+      Name: {el.name} <br />
+      Description: {el.description}
+      </div>
+      ));
+
+
+
+
+
+
+      //DELETE stuff
+      const handleSubmitDelete = (event) => {
+        event.preventDefault();
+        getAllLocations();
+
+        if (!locationIdExists(event.target.id.value)) {
+          alert("No valid location ID selected");
+        }
+        else if (event.target.confirmation.value != "yes") {
+          alert("Enter 'yes' to confirm deletion");
+        }
+        else {
+          fetch("http://localhost:8081/delete/" + location[0].id, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json"
+            }
+          })
+          .then(response => response.json())
+
+          alert("Deleted Location with ID: " + location[0].id);
+          setLocation([]);
+        }
+      };
+
+
+
+
    
     return (
       <div>
@@ -214,16 +353,27 @@ function App() {
             <input type="submit" value="Submit" />
           </div>
         </form>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmitPut}>
           <div>
             <h1>Add Picture to Location with ID</h1>
             <input type='number' placeholder='ID of the location'
-              onChange={handleChange} name='name' />
+              onChange={handleChangeLocation} name='id' />
             <input type='text' placeholder='Image Link'
-              onChange={handleChange} name='description' />
+              onChange={handleChangePut} name='images' />
             <input type="submit" value="Submit" />
           </div>
         </form>
+        <form onSubmit={handleSubmitDelete}>
+          <div>
+            <h1>Delete a Location with ID</h1>
+            <input type='number' placeholder='ID of the location'
+              onChange={handleChangeLocation} name='id' />
+            <input type='text' placeholder="Type 'yes' to confirm"
+              name='confirmation' />
+            <input type="submit" value="Submit" />
+          </div>
+        </form>
+        {showOneLocation}
       </div>
     );
   }

@@ -71,3 +71,28 @@ app.post("/create", async (req, res) => {
     const result = new Location(locationData);
     result.save()
 });
+
+app.put("/update/:id", async (req, res) => {
+    const image = req.body.image;
+    const id = req.params.id;
+
+    const oldLocation = await Location.find({"id": id});
+
+    let newImages = [];
+    newImages.push(oldLocation[0].images[0]);
+    newImages.push(image);
+
+    const result = await Location.updateOne({ "id": id }, { "images": newImages });
+});
+
+app.delete("/delete/:id", async (req, res) => {
+    const id = req.params.id;
+
+    const result = await Location.deleteOne({ "id": id });
+
+    if (result.deletedCount === 1) {
+      console.log("Successfully deleted one document.");
+    } else {
+      console.log("No documents matched the query. Deleted 0 documents.");
+    }
+});
