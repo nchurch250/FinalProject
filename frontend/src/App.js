@@ -67,10 +67,10 @@ function App() {
         "Content-Type": "application/json"
       }
     })
-    .then(response => response.json())
-    .then((data) => {
-      setLocations(data);
-    });
+      .then(response => response.json())
+      .then((data) => {
+        setLocations(data);
+      });
   }
 
   function getAllAuthors() {
@@ -109,21 +109,26 @@ function App() {
       const location = locations[i]
 
       locationBoxes.push(
-        <div key={location._id} className="locationBox">
+        <div key={location._id} className="locationPreview">
           <img src={location.images[0]}></img>
-          <p>{location.name}</p>
-          <p>{location.description}</p>
-          <button onClick={() => handleClick(location.id)}>More Info</button>
+          <p className="textButton" onClick={() => handleClick(location.id)}>{location.name}</p>
         </div>
       );
     }
 
-    return (<div>
-      <h1>Browse view</h1>
-      <button onClick={() => setView(0)}>Browse</button>
-      <button onClick={() => setView(3)}>Update Pictures</button>
-      <button onClick={() => setView(2)}>Authors</button>
-      <div id="locationBoxes">{locationBoxes}</div>
+    return (<div className="page">
+
+      <header>
+        <h1>Browse view</h1>
+      </header>
+
+      <nav>
+        <button onClick={() => setView(0)}>Browse</button>
+        <button onClick={() => setView(3)}>Update Pictures</button>
+        <button onClick={() => setView(2)}>Authors</button>
+      </nav>
+
+      <div id="locationBrowse">{locationBoxes}</div>
     </div>);
   }
 
@@ -131,38 +136,46 @@ function App() {
 
     const location = locations[0];
 
-    return (<div>
-      <h1>Specific location</h1>
-      <button onClick={() => setView(0)}>Back to Browse</button>
-      <p>{location.name}</p>
-
+    return (<div className="page">
+      <button id="backButton" onClick={() => setView(0)}>Back to Browse</button>
+      <div id="locationMain">
+        <img src={location.image} alt=''></img>
+        <p>{location.name}</p>
+        <p>{location.description}</p>
+      </div>
     </div>);
   }
 
   function View3() {
 
-    return (<div>
-      <h1>Website Authors</h1>
-      <button onClick={() => setView(0)}>Browse</button>
-      <button onClick={() => setView(3)}>Update Pictures</button>
-      <button onClick={() => setView(2)}>Authors</button>
-      <br />
-      <br />
-      <div class="author">
-        <div class="container-wrapper">
+    return (<div className="page">
 
-          <div class="container">
-              <img src={authors.find(item => item.id === 2).image} alt="Picture of Nathan" />
-              <p>Nathan Church<br />
+      <header>
+        <h1>Website Authors</h1>
+      </header>
+
+      <nav>
+        <button onClick={() => setView(0)}>Browse</button>
+        <button onClick={() => setView(3)}>Update Pictures</button>
+        <button onClick={() => setView(2)}>Authors</button>
+      </nav>
+
+      <br />
+      <br />
+      <div className="author">
+        <div className="container-wrapper">
+
+          <div className="container">
+            <img src={authors.find(item => item.id === 2).image} alt="Picture of Nathan" />
+            <p>My name is Nathan Church, I am an undergraduate student at Iowa State University.<br />
               <a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a></p>
           </div>
 
-          <div class="container">
+          <div className="container">
             <img src={authors.find(item => item.id === 1).image} alt="Picture of Dalton" />
             <p>Hello! My name is Dalton Clark and I am a Computer Science major attending Iowa State University. <br />
               This is our final project for Com S 319 and I have completed Com S 227, 228, 230, and 309.<br />
-            <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
-            
+              <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
           </div>
 
         </div>
@@ -205,7 +218,7 @@ function App() {
         },
         body: JSON.stringify(newLocation)
       })
-      .then(response => response.json())
+        .then(response => response.json())
 
       alert("Location and Cover Picture Added to Database with ID: " + newLocation.id);
       getAllLocations();
@@ -220,7 +233,7 @@ function App() {
     const handleChange = (event) => {
       let value = event.target.value;
       let name = event.target.name;
-   
+
       setNewLocation((prevalue) => {
         return {
           ...prevalue,   // Spread Operator               
@@ -334,11 +347,18 @@ function App() {
 
    
     return (
-      <div>
-        <h1>Update Pictures</h1>
-        <button onClick={() => setView(0)}>Browse</button>
-        <button onClick={() => setView(3)}>Update Pictures</button>
-        <button onClick={() => setView(2)}>Authors</button>
+      <div className="page">
+
+        <header>
+          <h1>Update Pictures</h1>
+        </header>
+
+        <nav>
+          <button onClick={() => setView(0)}>Browse</button>
+          <button onClick={() => setView(3)}>Update Pictures</button>
+          <button onClick={() => setView(2)}>Authors</button>
+        </nav>
+
         <br />
         <br />
         <form onSubmit={handleSubmit}>
@@ -346,11 +366,11 @@ function App() {
             <h1>Create New Location and Cover Picture</h1>
             <input type='text' placeholder='Name of the Location'
               onChange={handleChange} name='name' />
-            <input type='text' placeholder='Description of the Location'
+            <input id="descriptionInput" type='text' placeholder='Description of the Location'
               onChange={handleChange} name='description' />
             <input type='text' placeholder='Cover Image Link'
               onChange={handleChange} name='images' />
-            <input type="submit" value="Submit" />
+            <input className="submitButton" type="submit" value="Submit" />
           </div>
         </form>
         <form onSubmit={handleSubmitPut}>
@@ -379,18 +399,15 @@ function App() {
   }
 
 
-
-
   return (<div>
     {viewer === 0 && <View1 />}
     {viewer === 1 && <View2 />}
     {viewer === 2 && <View3 />}
     {viewer === 3 && <View4 />}
 
-    <div class="footer-padding"></div>
     <footer>
-        <p>Contact:</p>
-        <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
+      <p>Contact:</p>
+      <p><a href="mailto:nchurch@iastate.edu">nchurch@iastate.edu</a> or <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
     </footer>
   </div>);
 }
