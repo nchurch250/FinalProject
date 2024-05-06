@@ -104,7 +104,7 @@ function App() {
     return (<div className="page">
 
       <header>
-        <h1>Browse view</h1>
+        <h1>Browse</h1>
       </header>
 
       <nav>
