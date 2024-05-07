@@ -1,0 +1,95 @@
+[{
+  "_id": {
+    "$oid": "663969058112bdb0e2247b8a"
+  },
+  "id": 1,
+  "images": [
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Farmhouse/Snapchat-1939803733.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Farmhouse/Snapchat-796986778.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Farmhouse/Snapchat-186654455.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Farmhouse/Snapchat-1037509402.jpg?raw=true"
+  ],
+  "name": "Farmhouse",
+  "description": "Farmhouse Fraternity at Iowa State University",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66396b96afdbaf804f1d16ed"
+  },
+  "id": 2,
+  "images": [
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Friley/Snapchat-776038714.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Friley/Snapchat-828033076.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Friley/Snapchat-1430907478.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Friley/Snapchat-1142821592.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Friley/Snapchat-1035807686.jpg?raw=true"
+  ],
+  "name": "Friley Hall",
+  "description": "Friley Hall Dorm at Iowa State University",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66396caeafdbaf804f1d1711"
+  },
+  "id": 3,
+  "images": [
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Geoffrey/Snapchat-509397177.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Geoffrey/Snapchat-1696196601.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Geoffrey/Snapchat-1119564766.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Geoffrey/Snapchat-570554813.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Geoffrey/Snapchat-76261194.jpg?raw=true"
+  ],
+  "name": "Geoffrey Hall",
+  "description": "Geoffrey Hall Dorm at Iowa State University",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66396fc7afdbaf804f1d174c"
+  },
+  "id": 4,
+  "images": [
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Gerdin/Snapchat-1536225292.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Gerdin/Snapchat-226187268.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Gerdin/Snapchat-485393575.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Gerdin/Snapchat-819143048.jpg?raw=true"
+  ],
+  "name": "Gerdin",
+  "description": "Gerdin Business Building at Iowa State University",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66397043afdbaf804f1d1760"
+  },
+  "id": 5,
+  "images": [
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Memorial%20Union/Snapchat-1181020103.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Memorial%20Union/Snapchat-1634081892.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Memorial%20Union/Snapchat-2019235148.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Memorial%20Union/Snapchat-247913772.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/Memorial%20Union/Snapchat-29694474.jpg?raw=true"
+  ],
+  "name": "Memorial Union",
+  "description": "Memorial Union at Iowa State University",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "663970e3afdbaf804f1d1783"
+  },
+  "id": 6,
+  "images": [
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/State%20Gym/Snapchat-1848901628.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/State%20Gym/Snapchat-1941574251.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/State%20Gym/Snapchat-586853973.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/State%20Gym/Snapchat-1810939814.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/State%20Gym/Snapchat-1207243896.jpg?raw=true",
+    "https://github.com/nchurch250/FinalProject/blob/main/backend/images/State%20Gym/Snapchat-1204210387.jpg?raw=true"
+  ],
+  "name": "State Gym",
+  "description": "State Gym at Iowa State University",
+  "__v": 0
+}]

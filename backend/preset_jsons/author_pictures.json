@@ -1,0 +1,14 @@
+[{
+  "_id": {
+    "$oid": "6632c56fd62e9a3c17bae550"
+  },
+  "id": 1,
+  "image": "https://github.com/nchurch250/FinalProject/blob/main/backend/images/DaltonPicture.jpg?raw=true"
+},
+{
+  "_id": {
+    "$oid": "6632c5cdd62e9a3c17bae551"
+  },
+  "id": 2,
+  "image": "https://github.com/nchurch250/FinalProject/blob/main/backend/images/nathan.jpg?raw=true"
+}]
