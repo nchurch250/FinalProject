@@ -11,7 +11,6 @@ function App() {
   useEffect(() => {
     getAllAuthors();
     getAllLocations();
-    // checkHighestId();
   }, [])
 
   const setView = (view) => {
