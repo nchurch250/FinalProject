@@ -219,6 +219,11 @@ function App() {
               <a href="mailto:dbclark@iastate.edu">dbclark@iastate.edu</a></p>
           </div>
 
+          <div>
+          <h2>Class: SE/ComS319 Construction of User Interfaces, Spring 2024</h2>
+          <h2>Professor: Dr. Abraham N. Aldaco Gastelum</h2>
+          </div>
+
         </div>
       </div>
 
