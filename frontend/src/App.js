@@ -90,15 +90,38 @@ function App() {
       setViewer(1);
     };
 
-    for (let i = 0; i < locations.length; i++) {
-      const location = locations[i]
+    for (let i = 0; i < locations.length; i = i + 2) {
+      const location = locations[i];
+      let location2 = null;
+      try {
+        location2 = locations[i+1];
+      } catch {
 
-      locationBoxes.push(
-        <div key={location.id} className="locationPreview">
-          <img src={location.images[0]}></img>
-          <p className="textButton" onClick={() => handleClick(location.id)}>{location.name}</p>
-        </div>
-      );
+      }
+
+      if (location2 == null) {
+        locationBoxes.push(
+          <div>
+            <div key={location.id} className="locationPreview">
+              <img src={location.images[0]}></img>
+              <p className="textButton" onClick={() => handleClick(location.id)}>{location.name}</p>
+            </div>
+          </div>
+        );
+      } else {
+        locationBoxes.push(
+          <div className="pairedCards">
+            <div key={location.id} className="locationPreview">
+              <img src={location.images[0]}></img>
+              <p className="textButton" onClick={() => handleClick(location.id)}>{location.name}</p>
+            </div>
+            <div key={location2.id} className="locationPreview">
+              <img src={location2.images[0]}></img>
+              <p className="textButton" onClick={() => handleClick(location2.id)}>{location2.name}</p>
+            </div>
+          </div>
+        );
+      }
     }
 
     return (<div className="page">

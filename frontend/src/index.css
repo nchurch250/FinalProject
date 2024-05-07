@@ -102,7 +102,16 @@ nav button:hover {
 
 #locationBrowse {
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.pairedCards {
+    display: block;
+    justify-content: space-evenly;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -113,8 +122,8 @@ nav button:hover {
     border-color: black;
     border-style: outset;
     align-content: center;
-    width: 50%;
-    margin: 3%
+    width: 40%;
+    margin: 2% 4% 2% 5%;
 }
 
 .locationPreview img {

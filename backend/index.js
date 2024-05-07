@@ -78,11 +78,10 @@ app.put("/update/:id", async (req, res) => {
 
     const oldLocation = await Location.find({"id": id});
 
-    let newImages = [];
-    newImages.push(oldLocation[0].images[0]);
-    newImages.push(image);
+    oldLocation[0].images.push(image);
 
-    const result = await Location.updateOne({ "id": id }, { "images": newImages });
+    const result = await Location.updateOne({ "id": id }, { "images": oldLocation[0].images });
+    console.log(result);
 });
 
 app.delete("/delete/:id", async (req, res) => {
